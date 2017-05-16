@@ -7,14 +7,14 @@ import { PeopleService } from './people.service';
   template: `
   <section>
     <section *ngIf="isLoading && !errorMessage">
-    Loading our hyperdrives!!! Retrieving data...
+    Loading... Retrieving data...
     </section>
       <ul>
         <!-- this is the new syntax for ng-repeat -->
         <li *ngFor="let person of people">
             <a href="#" [routerLink]="['/persons', person.id]">
           {{person.name}}
-          </a>
+          </a> ({{person.address}})
         </li>
       </ul>
       <section *ngIf="errorMessage">

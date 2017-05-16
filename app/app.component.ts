@@ -10,5 +10,5 @@ import { PeopleService } from './people.service';
   providers: [PeopleService]
 })
 export class AppComponent {
-  title:string = 'Star Wars Peoplez!';
+  title:string = 'Artists!';
 }

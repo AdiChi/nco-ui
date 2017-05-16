@@ -4,7 +4,7 @@
     <h2>You selected: {{person.name}}</h2>
     <h3>Description</h3>
     <p>
-      {{person.name}} weights {{person.weight}} and is {{person.height}} tall.
+      {{person.name}} stays at {{person.address}}.
     </p>
   </section>
   <section>
@@ -13,25 +13,16 @@
             <label for="name">Name: </label>
             <input type="text" name="name" required [(ngModel)]="person.name" #name="ngModel">
             <div [hidden]="name.valid || name.pristine" class="error">
-                Name is required my good sir/lady!
+                Name is required!
             </div>
       </div>
       <div>
-        <label for="weight">Weight: </label>
-        <input type="number" name="weight" [(ngModel)]="person.weight">
-      </div>
-      <div>
-        <label for="height">Height: </label>
-        <input type="number" name="height" [(ngModel)]="person.height">
-      </div>
-      <div>
-        <label for="profession">Profession:</label>
-        <select name="profession" [(ngModel)]="person.profession">
-          <option *ngFor="let profession of professions" [value]="profession">{{profession}}</option>
-        </select>
+        <label for="address">Address: </label>
+        <input type="text" name="address" [(ngModel)]="person.address">
       </div>
       <button type="submit" [disabled]="!personForm.form.valid">Save</button>
     </form>
+      <button (click)="deletePersonDetails()">Delete</button>
   </section>
 
   <button (click)="gotoPeoplesList()">Back to peoples list</button>

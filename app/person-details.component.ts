@@ -12,7 +12,6 @@ import { PeopleService } from './people.service';
 export class PersonDetailsComponent implements OnInit, OnDestroy {
     person: Person;
     sub: any;
-    professions: string[] = ['jedi', 'bounty hunter', 'princess', 'sith lord'];
 
     constructor(private peopleService: PeopleService,
                 private route: ActivatedRoute,
@@ -21,7 +20,7 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
 
     ngOnInit(){
         this.sub = this.route.params.subscribe(params => {
-          let id = Number.parseInt(params['id']);
+          let id = params['id'];
           console.log('getting person with id: ', id);
           this.peopleService
             .get(id)
@@ -43,6 +42,18 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
           .save(this.person)
           .subscribe(
             (r: Response) => {console.log('success');}
+          );
+    }
+
+    deletePersonDetails(){
+      this.peopleService
+          .delete(this.person.id)
+          .subscribe(
+            (r: Response) => 
+            {
+              console.log('Deleted user '+ this.person.name);
+              this.gotoPeoplesList();
+            }
           );
     }
 }
