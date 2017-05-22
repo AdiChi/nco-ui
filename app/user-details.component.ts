@@ -2,15 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 
-import { Person } from './person';
+import { User } from './user';
 import { PeopleService } from './people.service';
 
 @Component({
-  selector: 'person-details',
-  templateUrl: 'app/person-details.component.html'
+  selector: 'user-details',
+  templateUrl: 'app/user-details.component.html',
+  styleUrls: ['css_folder/base.css']//not working
 })
-export class PersonDetailsComponent implements OnInit, OnDestroy {
-    person: Person;
+export class UserDetailsComponent implements OnInit, OnDestroy {
+    user: User;
     sub: any;
 
     constructor(private peopleService: PeopleService,
@@ -21,10 +22,10 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     ngOnInit(){
         this.sub = this.route.params.subscribe(params => {
           let id = params['id'];
-          console.log('getting person with id: ', id);
+          console.log('getting user with id: ', id);
           this.peopleService
             .get(id)
-            .subscribe(p => this.person = p);
+            .subscribe(p => this.user = p);
         });
     }
 
@@ -33,27 +34,32 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     }
 
     gotoPeoplesList(){
-        let link = ['/persons'];
+        let link = ['/users'];
         this.router.navigate(link);
     }
 
-    savePersonDetails(){
+    saveUserDetails(){
       this.peopleService
-          .save(this.person)
+          .save(this.user)
           .subscribe(
             (r: Response) => {console.log('success');}
           );
     }
 
-    deletePersonDetails(){
+    deleteUserDetails(){
       this.peopleService
-          .delete(this.person.id)
+          .delete(this.user.id)
           .subscribe(
             (r: Response) => 
             {
-              console.log('Deleted user '+ this.person.name);
+              console.log('Deleted user '+ this.user.name);
               this.gotoPeoplesList();
             }
           );
+    }
+
+    viewPopularity() {
+      let link = ['/users/popularity/' + this.user.id];
+      this.router.navigate(link);
     }
 }

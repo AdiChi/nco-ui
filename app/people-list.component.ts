@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from './person';
+import { User } from './user';
 import { PeopleService } from './people.service';
 
 @Component({
@@ -11,10 +11,10 @@ import { PeopleService } from './people.service';
     </section>
       <ul>
         <!-- this is the new syntax for ng-repeat -->
-        <li *ngFor="let person of people">
-            <a href="#" [routerLink]="['/persons', person.id]">
-          {{person.name}}
-          </a> ({{person.address}})
+        <li *ngFor="let user of people">
+            <a href="#" [routerLink]="['/users', user.id]">
+          {{user.name}}
+          </a> ({{user.address}})
         </li>
       </ul>
       <section *ngIf="errorMessage">
@@ -24,7 +24,7 @@ import { PeopleService } from './people.service';
   `
 })
 export class PeopleListComponent implements OnInit{
-  people: Person[] = [];
+  people: User[] = [];
   errorMessage: string = '';
   isLoading: boolean = true;
 

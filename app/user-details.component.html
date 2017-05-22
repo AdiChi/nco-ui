@@ -1,0 +1,31 @@
+<!-- new syntax for ng-if -->
+<section *ngIf="user">
+  <section>
+    <h2>You selected: {{user.name}}</h2>
+    <h3>Description</h3>
+    <p><b>
+      {{user.name}} lives in {{user.address}}.
+    </b></p>
+  </section>
+  <section>
+    <form (ngSubmit)="saveUserDetails()" #userForm="ngForm">
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" required [(ngModel)]="user.name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="error">
+                Name is required!
+            </div>
+      </div>
+      <br>
+      <div>
+        <label for="address">Address: </label>
+        <input type="text" name="address" [(ngModel)]="user.address">
+      </div>
+      <br>
+      <button type="submit" [disabled]="!userForm.form.valid">Update</button>
+    </form>
+      <button (click)="deleteUserDetails()">Delete</button>
+  </section>
+  <br>
+  <button (click)="gotoPeoplesList()">Back to user list</button>
+<section>
