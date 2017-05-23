@@ -11,9 +11,13 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "dist"
   },
+  "skipLibCheck": true,
   "filesGlob" : [
     "**/*.ts",
     "**/*.tsx",
     "!node_modules/**"
+  ],
+  "exclude": [
+      "node_modules"
   ]
 }

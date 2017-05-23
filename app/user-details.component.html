@@ -1,5 +1,6 @@
 <!-- new syntax for ng-if -->
 <section *ngIf="user">
+  <alert type="info">Hello!</alert>
   <section>
     <h2>You selected: {{user.name}}</h2>
     <h3>Description</h3>
@@ -28,4 +29,5 @@
   </section>
   <br>
   <button (click)="gotoPeoplesList()">Back to user list</button>
+
 <section>

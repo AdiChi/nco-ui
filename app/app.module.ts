@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AlertModule } from 'ng2-bootstrap';
 
 import { routing } from './app.routes';
 
@@ -11,7 +12,7 @@ import { UserDetailsComponent } from './user-details.component';
 import { UserPopularityComponent } from './user-popularity.component';
 
 @NgModule({
-  imports: [ BrowserModule, routing, FormsModule, HttpModule],
+  imports: [ BrowserModule, routing, FormsModule, HttpModule , AlertModule.forRoot()],
   declarations: [ AppComponent, PeopleListComponent, UserDetailsComponent, UserPopularityComponent],
   bootstrap: [ AppComponent ]
 })
